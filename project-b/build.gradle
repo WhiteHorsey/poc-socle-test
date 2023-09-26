@@ -1,0 +1,33 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '2.7.16'
+	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+}
+
+group = 'me.sample'
+version = '1.0.0'
+
+java {
+	sourceCompatibility = '1.8'
+}
+
+repositories {
+	mavenLocal() // This will resolve dependencies from the local repository
+	mavenCentral()
+}
+
+dependencies {
+	// Spring
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+
+	// Reference the core project
+	implementation fileTree(dir: 'libs', include: '*.jar')
+
+	// Test
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
